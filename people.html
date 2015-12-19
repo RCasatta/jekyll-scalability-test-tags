@@ -1,0 +1,35 @@
+---
+layout: default
+permalink: /people/
+---
+
+{% capture people %}
+  {% for person in site.data.people %}
+    {{ person[0] }}
+  {% endfor %}
+{% endcapture %}
+
+
+{% assign sortedpeople = people | split:' ' | sort %}
+
+<div class="home">
+
+  <h1 class="page-heading">People</h1>
+
+  <p>({{ people }})</p>
+  <p>({{ sortedpeople }})</p>
+
+  <ul class="post-list">
+    {% for key in sortedpeople %}
+    {% assign person = site.data.people[key] %}
+      <li>
+        <span class="post-meta">{{ person.name }} {{ person.surname }}</span>
+
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ site.data.companies[person.company] }}</a>
+        </h2>
+      </li>
+    {% endfor %}
+  </ul>
+
+</div>

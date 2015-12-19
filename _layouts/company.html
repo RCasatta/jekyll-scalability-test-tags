@@ -1,0 +1,27 @@
+---
+layout: default
+---
+<article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+  </header>
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+
+  <div>
+    Employees:
+    <ul>
+    {% for person in page.people %}
+      {% for apage in site.pages %}
+        {% if apage.id == person %}
+         <li><a href="/people/{{ person }}">{{ apage.title }}</a></li>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+    </ul>
+  </div>
+
+</article>

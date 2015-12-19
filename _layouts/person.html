@@ -1,0 +1,29 @@
+---
+layout: default
+---
+
+{% assign year = site.time | date: '%Y' %}
+<article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+  </header>
+  <p>età: {{ year | minus: page.born }}</p>
+  <div class="post-content">
+    {{ content }}
+  </div>
+
+  <div>
+    Employer:
+    <ul>
+    {% for apage in site.pages %}
+      {% for who in apage.people %}
+        {% if page.id == who %}
+         <li><a href="/companies/{{ apage.id }}">{{ apage.title }}</a></li>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+    </ul>
+  </div>
+
+</article>

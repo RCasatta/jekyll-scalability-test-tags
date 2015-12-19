@@ -1,0 +1,32 @@
+---
+layout: default
+permalink: /companies/
+---
+
+{% capture companies %}
+  {% for company in site.data.companies %}
+    {{ company[0] }}
+  {% endfor %}
+{% endcapture %}
+
+
+{% assign sortedcompanies = companies | split:' ' | sort %}
+
+<div class="home">
+
+  <h1 class="page-heading">Companies</h1>
+
+  <ul class="post-list">
+    {% for key in sortedcompanies %}
+    {% assign company = site.data.companies[key] %}
+      <li>
+        <span class="post-meta">{{ company.name }}</span>
+
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ company.country }}</a>
+        </h2>
+      </li>
+    {% endfor %}
+  </ul>
+
+</div>
