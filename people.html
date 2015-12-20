@@ -9,25 +9,19 @@ permalink: /people/
   {% endfor %}
 {% endcapture %}
 
-
 {% assign sortedpeople = people | split:' ' | sort %}
 
 <div class="home">
 
   <h1 class="page-heading">People</h1>
 
-  <p>({{ people }})</p>
-  <p>({{ sortedpeople }})</p>
-
-  <ul class="post-list">
+  <ul>
     {% for key in sortedpeople %}
     {% assign person = site.data.people[key] %}
       <li>
-        <span class="post-meta">{{ person.name }} {{ person.surname }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ site.data.companies[person.company] }}</a>
-        </h2>
+        <a href="{{ '.html' | prepend: key | prepend: '/people/' | prepend: site.baseurl }}">
+          {{ person.fullname }}
+        </a>
       </li>
     {% endfor %}
   </ul>

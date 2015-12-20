@@ -16,16 +16,14 @@ permalink: /companies/
 
   <h1 class="page-heading">Companies</h1>
 
-  <ul class="post-list">
+  <ul>
     {% for key in sortedcompanies %}
     {% assign company = site.data.companies[key] %}
-      <li>
-        <span class="post-meta">{{ company.name }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ company.country }}</a>
-        </h2>
-      </li>
+    <li>
+      <a href="{{ '.html' | prepend: key | prepend: '/companies/' | prepend: site.baseurl }}">
+        {{ company.name }}
+      </a>
+    </li>
     {% endfor %}
   </ul>
 

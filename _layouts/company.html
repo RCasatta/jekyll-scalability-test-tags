@@ -1,11 +1,16 @@
 ---
 layout: default
 ---
+{% assign company = site.data.companies[page.id] %}
+
 <article class="post">
 
   <header class="post-header">
     <h1 class="post-title">{{ page.title }}</h1>
   </header>
+
+  <p>Founded: <strong>{{ company.founded }}</strong></p>
+  <p>Country: <strong>{{ company.country }}</strong></p>
 
   <div class="post-content">
     {{ content }}
@@ -14,12 +19,9 @@ layout: default
   <div>
     Employees:
     <ul>
-    {% for person in page.people %}
-      {% for apage in site.pages %}
-        {% if apage.id == person %}
-         <li><a href="/people/{{ person }}">{{ apage.title }}</a></li>
-        {% endif %}
-      {% endfor %}
+    {% for personid in page.tags %}
+      {% assign person = site.data.people[personid] %}
+      <li><a href="{{ site.baseurl }}/people/{{ personid }}.html">{{ person.fullname }}</a></li>
     {% endfor %}
     </ul>
   </div>
